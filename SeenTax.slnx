@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Engine/Engine.vcxproj" Id="ab773b4b-4d94-4dd7-b435-53312cf8fdb6">
+    <Platform Solution="*|ARM64" Project="x64" />
+  </Project>
+  <Project Path="SeenTax.vcxproj" Id="298f44f0-8f23-42cc-a424-aed22ded710b">
+    <Deploy />
+  </Project>
+  <Project Path="Shared/Shared.vcxproj" Id="0e55f905-0d36-4f20-acfb-8ff907bf7b3c">
+    <Platform Solution="*|ARM64" Project="x64" />
+  </Project>
+</Solution>

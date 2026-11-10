@@ -1,0 +1,13 @@
+namespace SeenTax
+{
+    [default_interface]
+    runtimeclass CameraView : Microsoft.UI.Xaml.Controls.UserControl
+    {
+        CameraView();
+
+        // Start() connects to the Engine's camera preview; Stop() disconnects.
+        void Start();
+        void Stop();
+        void ShowMessage(String message);
+    }
+}
