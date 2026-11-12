@@ -15,7 +15,6 @@
 #include "Pinch.h"
 #include "PointerController.h"
 
-// The camera preview the Engine sends while the Control Panel shows the camera.
 namespace seentax
 {
     // The Control Panel connects to this pipe only while it shows the camera; the Engine then sends one

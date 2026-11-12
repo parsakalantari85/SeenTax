@@ -27,6 +27,6 @@ namespace seentax
 
     private:
         OnnxModel m_model;
-        std::vector<Point2> m_anchors; // computed once
+        std::vector<Point2> m_anchors;
     };
 }

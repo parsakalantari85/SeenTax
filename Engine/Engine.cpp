@@ -1,5 +1,3 @@
-// SeenTax Engine: moves the cursor with a hand seen by the webcam.
-
 #include <exception>
 #include <filesystem>
 #include <format>

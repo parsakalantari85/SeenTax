@@ -29,7 +29,7 @@ namespace
     using seentax::Point2;
     using seentax::PreviewHeader;
 
-    constexpr float kBarFullRatio = 0.8f; // the pinch bar is full at this pinch value
+    constexpr float kBarFullRatio = 0.8f;
     constexpr float kEventShownMs = 2000.0f;
     constexpr float kClickFlashMs = 300.0f;
 
@@ -259,7 +259,7 @@ namespace winrt::SeenTax::implementation
         m_pinchLine = MakeLine(m_palette.open, 3);
         m_thumbTip = MakeDot(10);
         m_fingerTip = MakeDot(10);
-        m_anchor = MakeDot(12); // a ring on the point the cursor follows
+        m_anchor = MakeDot(12);
         m_anchor.Stroke(m_palette.anchor);
         m_anchor.StrokeThickness(2);
         for (const UIElement& shape : { UIElement(m_pinchLine), UIElement(m_thumbTip), UIElement(m_fingerTip), UIElement(m_anchor) })

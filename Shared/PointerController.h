@@ -41,7 +41,7 @@ namespace seentax
         return trigger == Trigger::MiddlePinch ? PinchFinger::Middle : PinchFinger::Index;
     }
 
-    // One camera frame's hand, in fractions 0..1 of the desktop so no tuning depends on the screen size.
+    // One camera frame's hand; positions are fractions 0..1 of the desktop.
     struct PointerSample
     {
         SteadyTime capturedAt;
@@ -174,10 +174,9 @@ namespace seentax
         int wheelNotches = 0;
     };
 
-    // Moves the cursor once per display refresh and turns pinches into mouse buttons, like Apple Watch: a tap
-    // is a left click, two taps a right click, and a pinch held or moved holds the left button down until you
-    // let go. The cursor stays frozen from the start of a pinch until the gesture is decided. A tap's left
-    // click waits out the double-tap window, so a double tap doesn't also left-click.
+    // Moves the cursor once per display refresh and turns pinches and the fist into the actions bound to them.
+    // The cursor stays frozen from the start of a pinch until the gesture is decided. When a double tap is
+    // bound, a tap waits out the double-tap window, so a double tap doesn't also tap.
     class PointerController
     {
     public:

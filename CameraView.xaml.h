@@ -14,7 +14,6 @@
 
 namespace winrt::SeenTax::implementation
 {
-    // The Engine's camera picture with the hand drawn on it, the pinch value and the last gesture.
     struct CameraView : CameraViewT<CameraView>
     {
         CameraView() = default;

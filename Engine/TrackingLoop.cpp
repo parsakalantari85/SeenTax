@@ -94,8 +94,11 @@ namespace seentax
                 NoteHandCheck(wasFollowing);
                 MeasureHandSquare(frame);
                 Calibrate(&m_last, &frame);
+                const bool wrongDistance = WrongDistance();
+                m_backInRange = std::exchange(m_wrongDistance, wrongDistance) && !wrongDistance && m_last.handFound;
                 const auto pointerSettings = PointerSettingsFor(settings, PointerCenter(frame, settings));
                 m_parts.cursor.Publish(m_calibration.Running() ? m_pointer.Lose(frame.capturedAt, "recalibrating")
+                                       : wrongDistance         ? m_pointer.Lose(frame.capturedAt, "hand too close or too far")
                                                                : m_pointer.Update(m_last, frame, pointerSettings));
                 const auto frameEnd = Clock::now();
                 ++m_interval.frames;
@@ -138,6 +141,12 @@ namespace seentax
                 m_handSquareAt = frame.capturedAt;
             }
 
+            bool WrongDistance() const
+            {
+                const auto distance = DistanceOf(m_handSquare.value_or(0.0f));
+                return distance == HandDistance::TooFar || distance == HandDistance::TooClose;
+            }
+
             Point2 PointerCenter(const CameraFrame& frame, const Settings& settings)
             {
                 if (m_handCenter && m_handCenterFrom != settings.center)
@@ -145,9 +154,9 @@ namespace seentax
                     m_handCenter.reset();
                 }
                 const bool speedChanged = m_last.handFound && m_speedUsed && *m_speedUsed != settings.speedPercent;
-                if (m_last.newHand || speedChanged)
+                if (m_last.newHand || speedChanged || m_backInRange)
                 {
-                    KeepPointerInPlace(frame, settings, m_last.newHand ? "new hand" : "pointer speed changed");
+                    KeepPointerInPlace(frame, settings, m_last.newHand ? "new hand" : speedChanged ? "pointer speed changed" : "good distance again");
                 }
                 if (m_last.handFound)
                 {
@@ -309,6 +318,8 @@ namespace seentax
             std::optional<Point2> m_handCenter;
             Point2 m_handCenterFrom;
             std::optional<int> m_speedUsed;
+            bool m_wrongDistance = false;
+            bool m_backInRange = false;
             std::optional<float> m_handSquare;
             Clock::time_point m_handSquareAt{};
             TimedEvent m_lastEvent;

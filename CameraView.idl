@@ -5,7 +5,6 @@ namespace SeenTax
     {
         CameraView();
 
-        // Start() connects to the Engine's camera preview; Stop() disconnects.
         void Start();
         void Stop();
         void ShowMessage(String message);

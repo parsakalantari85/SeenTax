@@ -87,7 +87,6 @@ namespace seentax
 
     void LogLine(std::string_view text)
     {
-        // Timestamp
         std::string line = Timestamp() + "  ";
         const std::string indent(line.size(), ' ');
         for (const char c : text)

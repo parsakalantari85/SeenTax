@@ -8,7 +8,6 @@
 
 namespace seentax
 {
-    // An RGB image decoded from a JPEG or PNG file.
     class RgbImage
     {
     public:

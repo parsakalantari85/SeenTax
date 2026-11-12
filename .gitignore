@@ -364,3 +364,8 @@ FodyWeavers.xsd
 
 # Test datas from Developement phases
 testdata/
+
+# Claude Code
+CLAUDE.md
+CLAUDE.local.md
+.claude/
